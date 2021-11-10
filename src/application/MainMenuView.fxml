@@ -14,8 +14,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="application.MainMenuController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="application.MainMenuController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -40,11 +40,11 @@
                <children>
                   <Pane prefHeight="665.0" prefWidth="479.0" style="-fx-background-color: LightBlue;">
                      <children>
-                        <Button contentDisplay="TOP" layoutX="109.0" layoutY="58.0" mnemonicParsing="false" prefHeight="222.0" prefWidth="280.0" text="Current Orders">
+                        <Button contentDisplay="TOP" layoutX="109.0" layoutY="58.0" mnemonicParsing="false" onAction="#currentOrders" prefHeight="222.0" prefWidth="280.0" style="-fx-background-color: Moccasin;" text="Current Orders">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../OneDrive/Desktop/Pizza/currentoders.jpg" />
+                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/currentOrders.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -52,11 +52,11 @@
                               <Font name="Century" size="32.0" />
                            </font>
                         </Button>
-                        <Button contentDisplay="TOP" layoutX="109.0" layoutY="317.0" mnemonicParsing="false" prefHeight="222.0" prefWidth="280.0" text="Store Orders">
+                        <Button contentDisplay="TOP" layoutX="109.0" layoutY="317.0" mnemonicParsing="false" onAction="#storeOrders" prefHeight="222.0" prefWidth="280.0" style="-fx-background-color: Moccasin;" text="Store Orders">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../OneDrive/Desktop/Pizza/moneymoney.jpg" />
+                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/storeOrders.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -66,7 +66,7 @@
                         </Button>
                         <Label contentDisplay="RIGHT" layoutX="111.0" layoutY="14.0" prefHeight="33.0" prefWidth="278.0" text="Phone Number">
                            <graphic>
-                              <TextField prefHeight="33.0" prefWidth="181.0" promptText="123-456-7890">
+                              <TextField fx:id="phoneNumber" prefHeight="33.0" prefWidth="181.0" promptText="123-456-7890">
                                  <font>
                                     <Font name="Symbol" size="14.0" />
                                  </font>
@@ -86,11 +86,11 @@
                <children>
                   <Pane prefHeight="574.0" prefWidth="395.0">
                      <children>
-                        <Button contentDisplay="TOP" layoutX="36.0" layoutY="20.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="267.0" style="-fx-background-color: Moccasin;" text="Order Deluxe">
+                        <Button contentDisplay="TOP" layoutX="36.0" layoutY="20.0" mnemonicParsing="false" onAction="#orderDeluxe" prefHeight="153.0" prefWidth="267.0" style="-fx-background-color: Moccasin;" text="Order Deluxe">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../OneDrive/Desktop/Pizza/deluxePizza.jpg" />
+                                    <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/deluxePizza.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -98,11 +98,11 @@
                               <Font name="Rockwell Extra Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Button contentDisplay="TOP" layoutX="36.0" layoutY="215.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="267.0" style="-fx-background-color: Moccasin;" text="Order Hawaiian">
+                        <Button contentDisplay="TOP" layoutX="36.0" layoutY="215.0" mnemonicParsing="false" onAction="#orderHawaiian" prefHeight="153.0" prefWidth="267.0" style="-fx-background-color: Moccasin;" text="Order Hawaiian">
                            <graphic>
                               <ImageView fitHeight="137.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image />
+                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/hawaiianPizza.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -110,11 +110,11 @@
                               <Font name="Rockwell Extra Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Button contentDisplay="TOP" layoutX="36.0" layoutY="398.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="267.0" style="-fx-background-color: Moccasin;" text="Order Pepperoni">
+                        <Button contentDisplay="TOP" layoutX="36.0" layoutY="398.0" mnemonicParsing="false" onAction="#orderPepperoni" prefHeight="153.0" prefWidth="267.0" style="-fx-background-color: Moccasin;" text="Order Pepperoni">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="../images/pepperoniPizza.jpg" />
+                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/pepperoniPizza.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
