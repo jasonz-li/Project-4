@@ -24,7 +24,7 @@ public class Pepperoni extends Pizza{
                 return small;
             }
             else{
-                return small + (numberOfToppings * toppingCost);
+                return small + (numExtraToppings * toppingCost);
             }
         }
         else if (size.equals(Size.medium)){
@@ -32,7 +32,7 @@ public class Pepperoni extends Pizza{
                 return medium;
             }
             else{
-                return medium + (numberOfToppings * toppingCost);
+                return medium + (numExtraToppings * toppingCost);
             }
         }
         else if (size.equals(Size.large)){
@@ -40,7 +40,7 @@ public class Pepperoni extends Pizza{
                 return large;
             }
             else{
-                return large + (numberOfToppings * toppingCost);
+                return large + (numExtraToppings * toppingCost);
             }
         }
         return 0.00;

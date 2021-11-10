@@ -1,5 +1,5 @@
 package application;
 
 public enum Topping {
-    Pepperoni, Pineapple, Ham, Bacon, Onions, Mushrooms, Peppers, Sausage, Beef, Spinach
+    Pepperoni, Pineapple, Ham, Tomatoes, Onions, Mushrooms, Peppers, Sausage, Olives
 }

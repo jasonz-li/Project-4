@@ -7,7 +7,7 @@ public class Hawaiian extends Pizza{
     Hawaiian(ArrayList<Topping> toppings, Size size) {
         super(toppings, size);
     }
-
+  // ADD SALES TAX
     public double price() {
         double small = 10.99;
         double medium = small + 2;
@@ -23,7 +23,7 @@ public class Hawaiian extends Pizza{
                 return small;
             }
             else{
-                return small + (numberOfToppings * toppingCost);
+                return small + (numExtraToppings * toppingCost);
             }
         }
         else if (size.equals(Size.medium)){
@@ -31,7 +31,7 @@ public class Hawaiian extends Pizza{
                 return medium;
             }
             else{
-                return medium + (numberOfToppings * toppingCost);
+                return medium + (numExtraToppings * toppingCost);
             }
         }
         else if (size.equals(Size.large)){
@@ -39,7 +39,7 @@ public class Hawaiian extends Pizza{
                 return large;
             }
             else{
-                return large + (numberOfToppings * toppingCost);
+                return large + (numExtraToppings * toppingCost);
             }
         }
         return 0.00;

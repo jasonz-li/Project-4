@@ -11,11 +11,11 @@ public class PizzaMaker {
         Size small = Size.small;
         switch (flavor){
             case "Deluxe":
-                toppings.add(Topping.Sausage);
+                toppings.add(Topping.Tomatoes);
                 toppings.add(Topping.Peppers);
                 toppings.add(Topping.Mushrooms);
                 toppings.add(Topping.Onions);
-                toppings.add(Topping.Beef);
+                toppings.add(Topping.Olives);
                 Deluxe deluxe = new Deluxe (toppings, small);
                 return deluxe;
 
