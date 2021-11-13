@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,24 +15,20 @@
    <bottom>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="pizzaImage" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../OneDrive/Desktop/Pizza/temp.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="pizzaImage" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </bottom>
    <center>
       <HBox alignment="CENTER" prefHeight="211.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="additionalToppings" editable="true" prefHeight="249.0" prefWidth="195.0" />
+            <ListView fx:id="additionalToppings" prefHeight="249.0" prefWidth="195.0" />
             <VBox prefHeight="249.0" prefWidth="189.0">
                <children>
                   <Pane prefHeight="311.0" prefWidth="189.0" style="-fx-background-color: SkyBlue;">
                      <children>
                         <Button layoutX="63.0" layoutY="70.0" mnemonicParsing="false" onAction="#add" text="&gt; ADD &gt;" />
-                        <Button fx:id="remove" layoutX="52.0" layoutY="153.0" mnemonicParsing="false" text="&lt; REMOVE &lt;" />
+                        <Button layoutX="52.0" layoutY="153.0" mnemonicParsing="false" onAction="#remove" text="&lt; REMOVE &lt;" />
                      </children>
                   </Pane>
                </children>
@@ -49,7 +44,7 @@
                <children>
                   <Label layoutX="14.0" layoutY="140.0" text="Size">
                      <graphic>
-                        <ComboBox fx:id="sizes" prefWidth="150.0" />
+                        <ComboBox fx:id="sizes" onAction="#sizeChange" prefWidth="150.0" />
                      </graphic>
                   </Label>
                   <Label layoutX="272.0" layoutY="144.0" text="Price">
@@ -57,7 +52,7 @@
                         <TextField fx:id="price" />
                      </graphic>
                   </Label>
-                  <Button fx:id="addToOrder" layoutX="490.0" layoutY="144.0" mnemonicParsing="false" text="Add to Order" />
+                  <Button fx:id="addToOrderButton" layoutX="490.0" layoutY="144.0" mnemonicParsing="false" onAction="#addToOrder" text="Add to Order" />
                </children>
             </Pane>
          </children>

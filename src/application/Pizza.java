@@ -9,6 +9,7 @@ public abstract class Pizza {
 
     public Pizza(ArrayList<Topping> toppings, Size size) {
         this.toppings = toppings;
+        this.size = size;
     }
 }
 

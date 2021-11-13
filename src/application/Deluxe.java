@@ -10,16 +10,15 @@ public class Deluxe extends Pizza{
 
     public double price() {
         double small = 12.99;
-        double medium = small + 2;
-        double large = medium + 2;
-        int maxToppings = 7;
+        double medium = 14.99;
+        double large = 16.99;
         int deluxeToppings = 5;
         double toppingCost = 1.49;
         int numberOfToppings = toppings.size();
         int numExtraToppings = numberOfToppings - deluxeToppings;
 
         if (size.equals(Size.small)) {
-            if (numExtraToppings == 0){
+            if (numberOfToppings < deluxeToppings){
                 return small;
             }
             else{
@@ -27,7 +26,7 @@ public class Deluxe extends Pizza{
             }
         }
         else if (size.equals(Size.medium)){
-            if (numExtraToppings == 0){
+            if (numberOfToppings < deluxeToppings){
                 return medium;
             }
             else{
@@ -35,7 +34,7 @@ public class Deluxe extends Pizza{
             }
         }
         else if (size.equals(Size.large)){
-            if (numExtraToppings == 0){
+            if (numberOfToppings < deluxeToppings){
                 return large;
             }
             else{
