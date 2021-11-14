@@ -10,8 +10,8 @@ public class Deluxe extends Pizza{
 
     public double price() {
         double small = 12.99;
-        double medium = 14.99;
-        double large = 16.99;
+        double medium = small + 2;
+        double large = medium + 2;
         int deluxeToppings = 5;
         double toppingCost = 1.49;
         int numberOfToppings = toppings.size();

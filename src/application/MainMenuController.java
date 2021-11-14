@@ -1,24 +1,21 @@
 package application;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the home screen.
+ *
+ * @author John Leng, Jason Li
+ */
 
 public class MainMenuController {
     private String pizzaType;
@@ -26,11 +23,15 @@ public class MainMenuController {
     private Hawaiian hawaiian;
     private Pepperoni pepperoni;
 
-    Order order = new Order()
-    ArrayList<Order> orders = new ArrayList<Order>();
 
     @FXML
     private TextField phoneNumber;
+
+
+    ArrayList<Pizza> pizzas = new ArrayList<>();
+    ArrayList<Order> orders = new ArrayList<Order>();
+
+
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
@@ -47,10 +48,23 @@ public class MainMenuController {
     }
 
     @FXML
+    void storeOrders(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Store Orders");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void orderDeluxe(ActionEvent event) throws IOException {
         this.pizzaType = "Deluxe";
         this.deluxe = (Deluxe) PizzaMaker.createPizza(this.pizzaType);
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Ordering Pizzas");
@@ -58,8 +72,6 @@ public class MainMenuController {
         alert.showAndWait();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PizzaView.fxml"));
-            System.out.println(this.getDeluxe().toppings);
-
             Parent root = (Parent) loader.load();
             PizzaController pizzaView = loader.getController();
             pizzaView.setMainController(this);
@@ -79,22 +91,27 @@ public class MainMenuController {
     }
 
     @FXML
-    void orderHawaiian(ActionEvent event) {
-
-    }
-
-    @FXML
-    void orderPepperoni(ActionEvent event) {
-
-    }
-
-    @FXML
-    void storeOrders(ActionEvent event) throws IOException {
+    void orderHawaiian(ActionEvent event) throws IOException {
+        this.pizzaType = "Hawaiian";
+        this.hawaiian = (Hawaiian) PizzaMaker.createPizza(this.pizzaType);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Ordering Pizzas");
+        alert.setContentText("Starting a new order!");
+        alert.showAndWait();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("storeOrder.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PizzaView.fxml"));
+            Parent root = (Parent) loader.load();
+            PizzaController pizzaView = loader.getController();
+            pizzaView.setMainController(this);
+
+            pizzaView.setPizza(this.pizzaType);
+            pizzaView.setComboBox();
+            pizzaView.setPrice(this.pizzaType);
+            pizzaView.setPizzaImage(this.pizzaType);
+
             Stage stage = new Stage();
-            stage.setTitle("Store Orders");
+            stage.setTitle("Customize Your Pizza");
             stage.setScene(new Scene(root));
             stage.show();
         } catch(Exception e) {
@@ -102,8 +119,34 @@ public class MainMenuController {
         }
     }
 
+    @FXML
+    void orderPepperoni(ActionEvent event) throws IOException{
+        this.pizzaType = "Pepperoni";
+        this.pepperoni = (Pepperoni) PizzaMaker.createPizza(this.pizzaType);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Ordering Pizzas");
+        alert.setContentText("Starting a new order!");
+        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PizzaView.fxml"));
+            Parent root = (Parent) loader.load();
+            PizzaController pizzaView = loader.getController();
+            pizzaView.setMainController(this);
 
+            pizzaView.setPizza(this.pizzaType);
+            pizzaView.setComboBox();
+            pizzaView.setPrice(this.pizzaType);
+            pizzaView.setPizzaImage(this.pizzaType);
 
+            Stage stage = new Stage();
+            stage.setTitle("Customize Your Pizza");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public String getPizzaType(){
@@ -122,13 +165,7 @@ public class MainMenuController {
         return this.pepperoni;
     }
 
-    public MainMenuController getMain(){
-        return this;
+    public ArrayList<Pizza> getPizzas(){
+        return this.pizzas;
     }
-
-    public Order getOrders(){
-        return this.orders;
-    }
-
-
 }

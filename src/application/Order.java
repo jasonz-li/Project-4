@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Order {
     private String phoneNumber;
-    private ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+    private ArrayList<Pizza> pizzas;
 
     public Order(String phoneNumber, ArrayList<Pizza> pizzas){
         if (phoneNumber.length() == 10){
@@ -18,6 +18,13 @@ public class Order {
         }
     }
 
-}
+    public void addPizza(Pizza pizza){
+        this.pizzas.add(pizza);
+    }
 
+    public void deletePizza(Pizza pizza){
+        this.pizzas.remove(pizza);
+    }
+
+}
 
