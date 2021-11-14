@@ -26,6 +26,38 @@ public class Order {
         this.pizzas.remove(pizza);
     }
 
+    public String getPhoneNumber(){
+        return this.phoneNumber;
+    }
+
+    public ArrayList<Pizza> getPizzasArray(){
+        return this.pizzas;
+    }
+
+    public String singlePizzaToString(Pizza pizza){
+        String outputString = "";
+        if(pizza instanceof Deluxe){
+            outputString = outputString + "Deluxe pizza, ";
+
+        }else if (pizza instanceof Hawaiian){
+            outputString = outputString + "Hawaiian pizza, ";
+
+        }else if (pizza instanceof Pepperoni){
+            outputString = outputString + "Pepperoni pizza, ";
+
+        }
+        outputString = outputString + toppingString(pizza.toppings) + pizza.size.toString() + ", " + pizza.price();
+
+        return outputString;
+    }
+
+    public String toppingString(ArrayList<Topping> toppings){
+        String toppingStr = "";
+        for(int i = 0; i < toppings.size(); i++){
+            toppingStr = toppingStr + toppings.get(i).toString() + ", ";
+        }
+        return toppingStr;
+    }
 }
 
 
