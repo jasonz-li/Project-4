@@ -6,6 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Purpose is to generate stage for other components.
+ *
+ * @author Jason Li, John Leng
+ */
+
 public class Main extends Application {
 
     @Override

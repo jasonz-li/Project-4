@@ -18,20 +18,32 @@ import javafx.stage.Stage;
  */
 
 public class MainMenuController {
+    /**
+     * Type of pizza
+     */
     private String pizzaType;
+
+    /**
+     * Deluxe pizza
+     */
     private Deluxe deluxe;
+
+    /**
+     * Hawaiian pizza
+     */
     private Hawaiian hawaiian;
+
+    /**
+     * Pepperoni pizza
+     */
     private Pepperoni pepperoni;
 
 
     @FXML
     private TextField phoneNumber;
 
-
     ArrayList<Pizza> pizzas = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<Order>();
-
-
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
@@ -148,23 +160,44 @@ public class MainMenuController {
         }
     }
 
+    ////// Methods Section //////
 
+    /**
+     * Retreives type of pizza as a string
+     * @return type of pizza
+     */
     public String getPizzaType(){
         return this.pizzaType;
     }
 
+    /**
+     * Retrieves deluxe pizza
+     * @return deluxe pizza
+     */
     public Deluxe getDeluxe(){
         return this.deluxe;
     }
 
+    /**
+     * Retrieves hawaiian pizza
+     * @return hawaiian pizza
+     */
     public Hawaiian getHawaiian(){
         return this.hawaiian;
     }
 
+    /**
+     * Retrieves pepperoni pizza
+     * @return pepperoni pizza
+     */
     public Pepperoni getPepperoni(){
         return this.pepperoni;
     }
 
+    /**
+     * Retrieves the ArrayList of pizzas
+     * @return ArrayList of pizzas
+     */
     public ArrayList<Pizza> getPizzas(){
         return this.pizzas;
     }

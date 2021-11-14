@@ -1,11 +1,19 @@
 package application;
 
-//create an instance of subclasses based on the chosen flavor
-
-
 import java.util.ArrayList;
 
+/**
+ * Creates an instance of subclasses based on the chosen flavor.
+ *
+ * @author John Leng, Jason Li
+ */
+
 public class PizzaMaker {
+    /**
+     *  Creates an instance of subclasses based on the chosen flavor.
+     * @param flavor Pizza flavor
+     * @return pizza
+     */
     public static Pizza createPizza(String flavor) {
         ArrayList<Topping> toppings = new ArrayList<Topping>();
         Size small = Size.small;
@@ -26,7 +34,7 @@ public class PizzaMaker {
                 toppings.add(Topping.Pepperoni);
                 return new Pepperoni(toppings, small);
             default:
-                return new Deluxe(toppings, small);
+                return new Deluxe(toppings, small); // Returns plain deluxe pizza as base case.
         }
     }
 }

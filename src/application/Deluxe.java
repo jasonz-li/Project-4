@@ -2,12 +2,27 @@ package application;
 
 import java.util.ArrayList;
 
+/**
+ * Subclass of pizza for a Deluxe style pizza
+ *
+ * @author Jason Li, John Leng
+ */
+
 public class Deluxe extends Pizza{
 
+    /**
+     * Initializes a deluxe pizza
+     * @param toppings ArrayList of toppings
+     * @param size Size of pizza
+     */
     Deluxe(ArrayList<Topping> toppings, Size size) {
         super(toppings, size);
     }
 
+    /**
+     * Calculates the price of a deluxe pizza
+     * @return Priceof deluxe pizza
+     */
     public double price() {
         double small = 12.99;
         double medium = small + 2;
