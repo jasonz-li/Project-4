@@ -43,7 +43,7 @@
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/currentOrders.jpg" />
+                                     <Image url="@currentOrders.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -55,7 +55,7 @@
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/storeOrders.jpg" />
+                                     <Image url="@storeOrders.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -89,7 +89,7 @@
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/deluxePizza.jpg" />
+                                    <Image url="@deluxePizza.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -101,7 +101,7 @@
                            <graphic>
                               <ImageView fitHeight="137.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/hawaiianPizza.jpg" />
+                                     <Image url="@hawaiianPizza.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -113,7 +113,7 @@
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                     <Image url="file:/C:/Users/addic/OneDrive/Desktop/Pizza/pepperoniPizza.jpg" />
+                                     <Image url="@pepperoniPizza.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>

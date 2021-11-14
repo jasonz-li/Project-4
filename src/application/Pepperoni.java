@@ -2,25 +2,38 @@ package application;
 
 import java.util.ArrayList;
 
+/**
+ * Subclass of pizza for a pepperoni style pizza
+ *
+ * @author Jason Li, John Leng
+ */
+
 public class Pepperoni extends Pizza{
 
-
+    /**
+     * Initializes a pepperoni pizza
+     * @param toppings ArrayList of toppings
+     * @param size Size of pizza
+     */
     Pepperoni(ArrayList<Topping> toppings, Size size) {
         super(toppings, size);
     }
 
+    /**
+     * Calculates price of a pepperoni pizza
+     * @return Price of pepperoni pizza
+     */
     public double price(){
         double small = 8.99;
         double medium = small + 2;
         double large = medium + 2;
-        int maxToppings = 7;
         int pepperoniToppings = 1;
         double toppingCost = 1.49;
         int numberOfToppings = toppings.size();
         int numExtraToppings = numberOfToppings - pepperoniToppings;
 
         if (size.equals(Size.small)) {
-            if (numExtraToppings == 0){
+            if (numberOfToppings < pepperoniToppings){
                 return small;
             }
             else{
@@ -28,7 +41,7 @@ public class Pepperoni extends Pizza{
             }
         }
         else if (size.equals(Size.medium)){
-            if (numExtraToppings == 0){
+            if (numberOfToppings < pepperoniToppings){
                 return medium;
             }
             else{
@@ -36,7 +49,7 @@ public class Pepperoni extends Pizza{
             }
         }
         else if (size.equals(Size.large)){
-            if (numExtraToppings == 0){
+            if (numberOfToppings < pepperoniToppings){
                 return large;
             }
             else{

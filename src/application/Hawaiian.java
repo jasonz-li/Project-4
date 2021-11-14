@@ -2,24 +2,38 @@ package application;
 
 import java.util.ArrayList;
 
+/**
+ * Subclass of pizza for a Hawaiian style pizza
+ *
+ * @author Jason LI, John Leng
+ */
+
 public class Hawaiian extends Pizza{
 
+    /**
+     * Initializes a hawaiian pizza
+     * @param toppings ArrayList of toppings
+     * @param size Size of pizza
+     */
     Hawaiian(ArrayList<Topping> toppings, Size size) {
         super(toppings, size);
     }
-  // ADD SALES TAX
+
+    /**
+     * Calculates the price of a hawaiian pizza
+     * @return Price of hawaiian pizza
+     */
     public double price() {
         double small = 10.99;
         double medium = small + 2;
         double large = medium + 2;
-        int maxToppings = 7;
         int hawaiianToppings = 2;
         double toppingCost = 1.49;
         int numberOfToppings = toppings.size();
         int numExtraToppings = numberOfToppings - hawaiianToppings;
 
         if (size.equals(Size.small)) {
-            if (numExtraToppings == 0){
+            if (numberOfToppings < hawaiianToppings){
                 return small;
             }
             else{
@@ -27,7 +41,7 @@ public class Hawaiian extends Pizza{
             }
         }
         else if (size.equals(Size.medium)){
-            if (numExtraToppings == 0){
+            if (numberOfToppings < hawaiianToppings){
                 return medium;
             }
             else{
@@ -35,7 +49,7 @@ public class Hawaiian extends Pizza{
             }
         }
         else if (size.equals(Size.large)){
-            if (numExtraToppings == 0){
+            if (numberOfToppings < hawaiianToppings){
                 return large;
             }
             else{

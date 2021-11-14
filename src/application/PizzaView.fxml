@@ -42,17 +42,17 @@
          <children>
             <Pane prefHeight="179.0" prefWidth="681.0" style="-fx-background-color: SkyBlue;">
                <children>
-                  <Label layoutX="14.0" layoutY="140.0" text="Size">
+                  <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="140.0" text="Size">
                      <graphic>
                         <ComboBox fx:id="sizes" onAction="#sizeChange" prefWidth="150.0" />
                      </graphic>
                   </Label>
-                  <Label layoutX="272.0" layoutY="144.0" text="Price">
+                  <Label contentDisplay="RIGHT" layoutX="211.0" layoutY="140.0" text="Price">
                      <graphic>
-                        <TextField fx:id="price" />
+                        <TextField fx:id="price" editable="false" />
                      </graphic>
                   </Label>
-                  <Button fx:id="addToOrderButton" layoutX="490.0" layoutY="144.0" mnemonicParsing="false" onAction="#addToOrder" text="Add to Order" />
+                  <Button fx:id="addToOrderButton" layoutX="427.0" layoutY="133.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="39.0" prefWidth="135.0" text="Add to Order" />
                </children>
             </Pane>
          </children>
