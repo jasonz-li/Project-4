@@ -43,6 +43,8 @@ public class CurrentOrderController {
         alert.setTitle("Order Added");
         alert.setHeaderText("Order customization complete!");
         alert.setContentText("Successfully added order!");
+        alert.showAndWait();
+
     }
 
     @FXML
