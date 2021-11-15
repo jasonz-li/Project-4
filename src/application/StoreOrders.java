@@ -8,7 +8,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class StoreOrders {
-    private ArrayList<Order> orders;
+    private ArrayList<Order> orders = new ArrayList<Order>();
+
+    public StoreOrders (){
+    }
 
     public StoreOrders (ArrayList<Order> orders){
         this.orders = orders;

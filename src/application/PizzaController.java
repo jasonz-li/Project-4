@@ -228,14 +228,6 @@ public class PizzaController {
             Stage stage = (Stage) addToOrderButton.getScene().getWindow();
             stage.close();
         }
-        Order currentOrder = new Order(mainController.getPhoneNumber(), mainController.getPizzas());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("currentOrderView.fxml"));
-        CurrentOrderController currentController = loader.getController();
-
-        currentController.setNumber("een"); //mainController.getPhoneNumber()
-        currentController.setOrderObject(currentOrder);
-        currentController.displayOrder(currentOrder);
-        currentController.reCalculateFields(currentOrder);
     }
 
     ////// Methods Section //////

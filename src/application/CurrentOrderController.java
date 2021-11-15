@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.util.Formatter;
@@ -34,16 +35,31 @@ public class CurrentOrderController {
 
     private Order OrderObject;
 
-    private StoreOrders storeOrder;
+    private StoreOrders StoreOrder = new StoreOrders();
 
     @FXML
     void placeOrder(ActionEvent event) {
-        storeOrder.addOrder(OrderObject);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Order Added");
-        alert.setHeaderText("Order customization complete!");
-        alert.setContentText("Successfully added order!");
-        alert.showAndWait();
+        if(this.OrderObject.getPizzasArray().size() > 0){
+            this.StoreOrder.addOrder(OrderObject);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Order Added");
+            alert.setHeaderText("Order customization complete!");
+            alert.setContentText("Successfully added order!");
+            alert.showAndWait();
+
+            Stage stage = (Stage) placeOrderButton.getScene().getWindow();
+            stage.close();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Order Not Added");
+            alert.setHeaderText("Order Incomplete!");
+            alert.setContentText("Please add at least 1 pizza! ");
+            alert.showAndWait();
+
+            Stage stage = (Stage) placeOrderButton.getScene().getWindow();
+            stage.close();
+        }
+
 
     }
 
@@ -115,6 +131,10 @@ public class CurrentOrderController {
 
     public void setOrderObject(Order order){
         this.OrderObject = order;
+    }
+
+    public StoreOrders getStoreOrder(){
+        return this.StoreOrder;
     }
 
 

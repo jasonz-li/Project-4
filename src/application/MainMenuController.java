@@ -47,7 +47,6 @@ public class MainMenuController {
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
-        //if(phoneNumber.getText().length() != 10 || phoneNumber.)
         try {
             Order currentOrder = new Order(phoneNumber.getText(), this.getPizzas());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("currentOrderView.fxml"));
@@ -56,6 +55,7 @@ public class MainMenuController {
 
             currentController.setNumber(phoneNumber.getText());
             currentController.setOrderObject(currentOrder);
+
             currentController.displayOrder(currentOrder);
             currentController.reCalculateFields(currentOrder);
 
