@@ -12,7 +12,6 @@ public class StoreOrders {
 
     public StoreOrders (){
     }
-
     public StoreOrders (ArrayList<Order> orders){
         this.orders = orders;
     }
@@ -22,6 +21,10 @@ public class StoreOrders {
     }
     public void removeOrder(Order order){
         this.orders.remove(order);
+    }
+
+    public ArrayList<Order> getOrders(){
+        return this.orders;
     }
 
 }

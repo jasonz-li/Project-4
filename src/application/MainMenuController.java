@@ -43,7 +43,7 @@ public class MainMenuController {
     private TextField phoneNumber;
 
     ArrayList<Pizza> pizzas = new ArrayList<>();
-    ArrayList<Order> orders = new ArrayList<Order>();
+    ArrayList<Order> orders = new ArrayList<>();
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
@@ -52,6 +52,8 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("currentOrderView.fxml"));
             Parent root = (Parent) loader.load();
             CurrentOrderController currentController = loader.getController();
+
+            currentController.setMainController(this);
 
             currentController.setNumber(phoneNumber.getText());
             currentController.setOrderObject(currentOrder);
@@ -72,10 +74,16 @@ public class MainMenuController {
     @FXML
     void storeOrders(ActionEvent event) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            if(orders.size() == 0){
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
+            Parent root = (Parent) loader.load();
+            StoreOrderController storeOrderController = loader.getController();
 
-
+            storeOrderController.setUpStoreOrder(orders);
+            storeOrderController.setOrderPrice();
+            storeOrderController.displayOrdersList();
 
             Stage stage = new Stage();
             stage.setTitle("Store Orders");

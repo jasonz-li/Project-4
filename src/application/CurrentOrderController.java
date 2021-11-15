@@ -33,14 +33,21 @@ public class CurrentOrderController {
     @FXML
     private TextField subtotalField;
 
+    /**
+     * MainMenuController
+     */
+    private MainMenuController mainController;
+
     private Order OrderObject;
 
-    private StoreOrders StoreOrder = new StoreOrders();
 
     @FXML
     void placeOrder(ActionEvent event) {
         if(this.OrderObject.getPizzasArray().size() > 0){
-            this.StoreOrder.addOrder(OrderObject);
+            mainController.orders.add(OrderObject);
+            OrderObject.getPizzasArray().clear();
+            customerNumber.setText("");
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Order Added");
             alert.setHeaderText("Order customization complete!");
@@ -59,7 +66,6 @@ public class CurrentOrderController {
             Stage stage = (Stage) placeOrderButton.getScene().getWindow();
             stage.close();
         }
-
 
     }
 
@@ -118,10 +124,17 @@ public class CurrentOrderController {
                         }
                     }
                 };
-
                 return cell;
             }
         });
+    }
+
+    /**
+     * Sets mainController to another controller.
+     * @param controller Targeted controller
+     */
+    public void setMainController(MainMenuController controller) {
+        mainController = controller;
     }
 
     public void setNumber(String number){
@@ -133,9 +146,6 @@ public class CurrentOrderController {
         this.OrderObject = order;
     }
 
-    public StoreOrders getStoreOrder(){
-        return this.StoreOrder;
-    }
 
 
 
