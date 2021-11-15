@@ -8,6 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -47,6 +50,30 @@ public class MainMenuController {
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if (phoneNumber.getText().isEmpty()){
+            alert.setTitle("Empty Text Field");
+            alert.setHeaderText("No phone number entered.");
+            alert.setContentText("Phone number field cannot be empty.");
+            alert.showAndWait();
+            return;
+        }
+        else{
+            if (phoneNumber.getText().length() != 10){
+                alert.setTitle("Invalid Phone Number");
+                alert.setHeaderText("Invalid Phone Number");
+                alert.setContentText("Please enter a valid phone number.");
+                alert.showAndWait();
+                return;
+            }
+            else if (!isValid(phoneNumber.getText())){
+                alert.setTitle("Invalid Phone Number");
+                alert.setHeaderText("Invalid Phone Number");
+                alert.setContentText("Please enter a valid phone number.");
+                alert.showAndWait();
+                return;
+            }
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("currentOrderView.fxml"));
             Parent root = (Parent) loader.load();
@@ -200,5 +227,12 @@ public class MainMenuController {
      */
     public ArrayList<Pizza> getPizzas(){
         return this.pizzas;
+    }
+
+    public static boolean isValid(String s)
+    {
+        Pattern p = Pattern.compile("^\\d{10}$");
+        Matcher m = p.matcher(s);
+        return (m.matches());
     }
 }
