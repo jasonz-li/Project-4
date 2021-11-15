@@ -1,10 +1,12 @@
 package application;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Callback;
+
 import java.util.Formatter;
 
 public class CurrentOrderController {
@@ -30,18 +32,27 @@ public class CurrentOrderController {
     @FXML
     private TextField subtotalField;
 
+    private Order OrderObject;
+
+    private StoreOrders storeOrder;
+
     @FXML
     void placeOrder(ActionEvent event) {
-
+        storeOrder.addOrder(OrderObject);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Order Added");
+        alert.setHeaderText("Order customization complete!");
+        alert.setContentText("Successfully added order!");
     }
 
     @FXML
     void removePizza(ActionEvent event) {
-
-
+        OrderObject.deletePizza(listView.getSelectionModel().getSelectedItem());
 
         reCalculateFields(OrderObject);
+        displayOrder(OrderObject);
     }
+
 
     public void reCalculateFields(Order OrderObject){
         double price = 0;
@@ -64,21 +75,45 @@ public class CurrentOrderController {
         }
         taxAmount = price * taxPercent;
         total = taxAmount + price;
-        Formatter formatter = new Formatter();
-        formatter.format("%.2f", price);
-        formatter.format("%.2f", taxAmount);
-        formatter.format("%.2f", total);
-        subtotalField.setText(String.valueOf(price));
-        salesTaxField.setText(String.valueOf(taxAmount));
-        orderTotal.setText(String.valueOf(total));
+        subtotalField.setText(String.valueOf(String.format("%.2f", price)));
+        salesTaxField.setText(String.valueOf(String.format("%.2f", taxAmount)));
+        orderTotal.setText(String.valueOf(String.format("%.2f", total)));
     }
 
-    public void displayOrder(Order order){
-        for(int i = 0; i < order.getPizzasArray().size(); i++){
+    public void displayOrder(Order order) {
+        listView.getItems().clear();
+
+        for (int i = 0; i < order.getPizzasArray().size(); i++) {
             listView.getItems().add(order.getPizzasArray().get(i));
         }
+
+        listView.setCellFactory(new Callback<ListView<Pizza>, ListCell<Pizza>>() {
+
+            @Override
+            public ListCell<Pizza> call(ListView<Pizza> p) {
+                ListCell<Pizza> cell = new ListCell<Pizza>() {
+                    @Override
+                    protected void updateItem(Pizza pizza, boolean bln) {
+                        super.updateItem(pizza, bln);
+                        if (pizza != null) {
+                            setText(order.singlePizzaToString(pizza));
+                        }
+                    }
+                };
+
+                return cell;
+            }
+        });
     }
 
+    public void setNumber(String number){
+        customerNumber.setText(number);
+    }
+
+
+    public void setOrderObject(Order order){
+        this.OrderObject = order;
+    }
 
 
 

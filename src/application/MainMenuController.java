@@ -47,9 +47,19 @@ public class MainMenuController {
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
+        //if(phoneNumber.getText().length() != 10 || phoneNumber.)
         try {
+            Order currentOrder = new Order(phoneNumber.getText(), this.getPizzas());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("currentOrderView.fxml"));
             Parent root = (Parent) loader.load();
+            CurrentOrderController currentController = loader.getController();
+
+            currentController.setNumber(phoneNumber.getText());
+            currentController.setOrderObject(currentOrder);
+            currentController.displayOrder(currentOrder);
+            currentController.reCalculateFields(currentOrder);
+
+
             Stage stage = new Stage();
             stage.setTitle("Current Orders");
             stage.setScene(new Scene(root));
@@ -64,6 +74,9 @@ public class MainMenuController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
             Parent root = (Parent) fxmlLoader.load();
+
+
+
             Stage stage = new Stage();
             stage.setTitle("Store Orders");
             stage.setScene(new Scene(root));
@@ -200,5 +213,9 @@ public class MainMenuController {
      */
     public ArrayList<Pizza> getPizzas(){
         return this.pizzas;
+    }
+
+    public String getPhoneNumber(){
+        return phoneNumber.getText();
     }
 }
