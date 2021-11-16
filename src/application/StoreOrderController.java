@@ -6,8 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class StoreOrderController {
@@ -31,15 +34,22 @@ public class StoreOrderController {
 
     @FXML
     void ComboBoxAction(ActionEvent event) {
-        Order currentOrder = ComboBox.getSelectionModel().getSelectedItem();
-        displayPizzas(currentOrder);
-        pizzaTextArea.setText(Integer.toString(currentOrder.getPizzasArray().size()));
+        Order currOrder = ComboBox.getValue();
+        displayPizzas(currOrder);
     }
 
     @FXML
     void exportStoreOrders(ActionEvent event) {
-
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open Target File for the Export");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File targeFile = chooser.showSaveDialog(stage); //get the reference of the target file
+        //write code to write to the file.
     }
+
+
 
     @FXML
     void cancelStoreOrder(ActionEvent event) {
@@ -58,15 +68,11 @@ public class StoreOrderController {
 
     }
 
-    public void displayPizzas(Order order) {                //DEBUG
-        pizzaTextArea.clear();
+    public void displayPizzas(Order order) {
 
         StringBuilder output = new StringBuilder(order.getPhoneNum());
         output.append("\n");
 
-        if(order.getPizzasArray().size() == 0 ){
-            output.append("Zero Pizzas");
-        }
         for (int i = 0; i < order.getPizzasArray().size(); i++) {
             output.append(order.singlePizzaToString(order.getPizzasArray().get(i))).append("\n");
         }
