@@ -45,7 +45,8 @@ public class CurrentOrderController {
     void placeOrder(ActionEvent event) {
         if(this.OrderObject.getPizzasArray().size() > 0){
             mainController.orders.add(OrderObject);
-            OrderObject.getPizzasArray().clear();
+
+            mainController.getPizzas().clear();
             customerNumber.setText("");
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

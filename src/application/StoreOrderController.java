@@ -1,6 +1,7 @@
 
 package application;
 
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,16 +43,25 @@ public class StoreOrderController {
     }
 
     public void initialize(){
-        orderListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Order> ov, Order old_val, Order new_val) -> {
+        /* x orderListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Order> ov, Order old_val, Order new_val) -> {
             if(new_val != null) {
                 Order selectedItem = orderListView.getSelectionModel().getSelectedItem();
                 displayPizzas(selectedItem);
                 setOrderPrice();
             }
+        });*/
+
+        orderListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null) {
+                // i Order selectedItem = orderListView.getSelectionModel().getSelectedItem();
+                displayPizzas(newValue);
+                setOrderPrice();
+            }
         });
     }
 
-    public void displayOrdersList() {
+
+    public void displayOrdersList() {                       //WORKS
         orderListView.getItems().clear();
 
         for (int i = 0; i < storeOrder.getOrders().size(); i++) {
@@ -61,13 +71,13 @@ public class StoreOrderController {
         orderListView.setCellFactory(new Callback<ListView<Order>, ListCell<Order>>() {
 
             @Override
-            public ListCell<Order> call(ListView<Order> param) {
+            public ListCell<Order> call(ListView<Order> p) {
                 ListCell<Order> cell = new ListCell<Order>() {
                     @Override
                     protected void updateItem(Order order, boolean bln) {
                         super.updateItem(order, bln);
                         if (order != null) {
-                            setText(order.getPhoneNumber());
+                            setText(order.getPhoneNum());
                         }
                     }
                 };
@@ -76,10 +86,15 @@ public class StoreOrderController {
         });
     }
 
-    public void displayPizzas(Order order) {
+    public void displayPizzas(Order order) {                //DEBUG
         pizzaTextArea.clear();
 
-        StringBuilder output = new StringBuilder();
+        StringBuilder output = new StringBuilder(order.getPhoneNum());
+        output.append("\n");
+
+        if(order.getPizzasArray().size() == 0 ){
+            output.append("Eat ");
+        }
         for (int i = 0; i < order.getPizzasArray().size(); i++) {
             output.append(order.singlePizzaToString(order.getPizzasArray().get(i))).append("\n");
         }
@@ -89,8 +104,8 @@ public class StoreOrderController {
 
     public void setOrderPrice(){
         double price = 0;
-        double taxAmount = 0;
-        double total = 0;
+        double taxAmount;
+        double total;
         double taxPercent = 0.06625;
         for(int j = 0; j < storeOrder.getOrders().size(); j++) {
             Order OrderObject = storeOrder.getOrders().get(j);
@@ -114,8 +129,8 @@ public class StoreOrderController {
         entireOrderTotal.setText(String.valueOf(String.format("%.2f", total)));
     }
 
-    public void setUpStoreOrder(ArrayList<Order> orders){
-        this.storeOrder = new StoreOrders(orders);
+    public void setUpStoreOrder(StoreOrders orders){
+        this.storeOrder = orders;
     }
 }
 

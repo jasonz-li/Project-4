@@ -77,11 +77,12 @@ public class MainMenuController {
             if(orders.size() == 0){
                 return;
             }
+            StoreOrders storeOrders = new StoreOrders(orders);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
             Parent root = (Parent) loader.load();
             StoreOrderController storeOrderController = loader.getController();
 
-            storeOrderController.setUpStoreOrder(orders);
+            storeOrderController.setUpStoreOrder(storeOrders);
             storeOrderController.setOrderPrice();
             storeOrderController.displayOrdersList();
 
@@ -222,6 +223,7 @@ public class MainMenuController {
     public ArrayList<Pizza> getPizzas(){
         return this.pizzas;
     }
+
 
     public String getPhoneNumber(){
         return phoneNumber.getText();

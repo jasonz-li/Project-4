@@ -26,7 +26,7 @@ public class Order {
         this.pizzas.remove(pizza);
     }
 
-    public String getPhoneNumber(){
+    public String getPhoneNum(){
         return this.phoneNumber;
     }
 
