@@ -50,7 +50,7 @@ public class MainMenuController {
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
         if (phoneNumber.getText().isEmpty()){
             alert.setTitle("Empty Text Field");
             alert.setHeaderText("No phone number entered.");
