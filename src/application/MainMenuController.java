@@ -46,37 +46,29 @@ public class MainMenuController {
     private TextField phoneNumber;
 
     ArrayList<Pizza> pizzas = new ArrayList<>();
-    ArrayList<Order> orders = new ArrayList<Order>();
+    ArrayList<Order> orders = new ArrayList<>();
+    StoreOrders storeOrders = new StoreOrders(orders);
 
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-        if (phoneNumber.getText().isEmpty()){
-            alert.setTitle("Empty Text Field");
-            alert.setHeaderText("No phone number entered.");
-            alert.setContentText("Phone number field cannot be empty.");
-            alert.showAndWait();
+        if(!alertCheck()) {
             return;
         }
-        else{
-            if (phoneNumber.getText().length() != 10){
-                alert.setTitle("Invalid Phone Number");
-                alert.setHeaderText("Invalid Phone Number");
-                alert.setContentText("Please enter a valid phone number.");
-                alert.showAndWait();
-                return;
-            }
-            else if (!isValid(phoneNumber.getText())){
-                alert.setTitle("Invalid Phone Number");
-                alert.setHeaderText("Invalid Phone Number");
-                alert.setContentText("Please enter a valid phone number.");
-                alert.showAndWait();
-                return;
-            }
-        }
         try {
+            Order currentOrder = new Order(phoneNumber.getText(), pizzas);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("currentOrderView.fxml"));
             Parent root = (Parent) loader.load();
+            CurrentOrderController currentController = loader.getController();
+            currentController.setMainController(this);
+
+            if (!orders.isEmpty()) {
+                System.out.println(orders.get(0).getPizzas().isEmpty());
+            }
+            Order order = new Order(phoneNumber.getText(), pizzas);
+            currentController.setOrder(order);
+            currentController.displayOrder(currentOrder);
+            currentController.reCalculateFields(currentOrder);
+
             Stage stage = new Stage();
             stage.setTitle("Current Orders");
             stage.setScene(new Scene(root));
@@ -89,8 +81,27 @@ public class MainMenuController {
     @FXML
     void storeOrders(ActionEvent event) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            if (orders.size() == 0){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Incomplete Order Placement!");
+                alert.setContentText("Please order at least 1 pizza!");
+                alert.showAndWait();
+                return;
+            }
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreOrderView.fxml"));
+            Parent root = (Parent) loader.load();
+            StoreOrderController storeOrder = loader.getController();
+            storeOrder.setMainController(this);
+
+            System.out.println(orders.get(0).getPizzas().get(0).toppings);
+            System.out.println(storeOrders.getOrders().get(0).getPhoneNum() + storeOrders.getOrders().get(0).getPizzas().get(0).toppings);
+            storeOrder.setStoreOrder(storeOrders);
+            storeOrder.setOrderPrice();
+            storeOrder.initializeComboBox();
+
             Stage stage = new Stage();
             stage.setTitle("Store Orders");
             stage.setScene(new Scene(root));
@@ -102,6 +113,9 @@ public class MainMenuController {
 
     @FXML
     void orderDeluxe(ActionEvent event) throws IOException {
+        if(!alertCheck()) {
+            return;
+        }
         this.pizzaType = "Deluxe";
         this.deluxe = (Deluxe) PizzaMaker.createPizza(this.pizzaType);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -131,6 +145,9 @@ public class MainMenuController {
 
     @FXML
     void orderHawaiian(ActionEvent event) throws IOException {
+        if(!alertCheck()) {
+            return;
+        }
         this.pizzaType = "Hawaiian";
         this.hawaiian = (Hawaiian) PizzaMaker.createPizza(this.pizzaType);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -160,6 +177,9 @@ public class MainMenuController {
 
     @FXML
     void orderPepperoni(ActionEvent event) throws IOException{
+        if(!alertCheck()) {
+            return;
+        }
         this.pizzaType = "Pepperoni";
         this.pepperoni = (Pepperoni) PizzaMaker.createPizza(this.pizzaType);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -229,10 +249,42 @@ public class MainMenuController {
         return this.pizzas;
     }
 
+    public ArrayList<Order> getOrders(){
+        return this.orders;
+    }
+
     public static boolean isValid(String s)
     {
         Pattern p = Pattern.compile("^\\d{10}$");
         Matcher m = p.matcher(s);
         return (m.matches());
+    }
+
+    private boolean alertCheck(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if (phoneNumber.getText().isEmpty()){
+            alert.setTitle("Empty Text Field");
+            alert.setHeaderText("No phone number entered.");
+            alert.setContentText("Phone number field cannot be empty.");
+            alert.showAndWait();
+            return false;
+        }
+        else{
+            if (phoneNumber.getText().length() != 10){
+                alert.setTitle("Invalid Phone Number");
+                alert.setHeaderText("Invalid Phone Number");
+                alert.setContentText("Please enter a valid phone number.");
+                alert.showAndWait();
+                return false;
+            }
+            else if (!isValid(phoneNumber.getText())){
+                alert.setTitle("Invalid Phone Number");
+                alert.setHeaderText("Invalid Phone Number");
+                alert.setContentText("Please enter a valid phone number.");
+                alert.showAndWait();
+                return false;
+            }
+        }
+        return true;
     }
 }
