@@ -75,16 +75,22 @@ public class MainMenuController {
     void storeOrders(ActionEvent event) throws IOException {
         try {
             if(orders.size() == 0){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Incomplete Order Placement!");
+                alert.setContentText("Please order at least 1 pizza!");
+                alert.showAndWait();
                 return;
             }
+
             StoreOrders storeOrders = new StoreOrders(orders);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreOrderView.fxml"));
             Parent root = (Parent) loader.load();
             StoreOrderController storeOrderController = loader.getController();
             storeOrderController.setUpStoreOrder(storeOrders);
 
             storeOrderController.setOrderPrice();
-            storeOrderController.displayOrdersList();
+            storeOrderController.initializeComboBox();
 
             Stage stage = new Stage();
             stage.setTitle("Store Orders");

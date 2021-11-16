@@ -58,6 +58,11 @@ public class Order {
         }
         return toppingStr;
     }
+
+    @Override
+    public String toString() {
+        return phoneNumber;
+    }
 }
 
 
