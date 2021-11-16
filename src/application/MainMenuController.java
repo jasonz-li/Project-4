@@ -48,7 +48,7 @@ public class MainMenuController {
     @FXML
     void currentOrders(ActionEvent event) throws IOException {
         try {
-            Order currentOrder = new Order(phoneNumber.getText(), this.getPizzas());
+            Order currentOrder = new Order(phoneNumber.getText(), pizzas);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("currentOrderView.fxml"));
             Parent root = (Parent) loader.load();
             CurrentOrderController currentController = loader.getController();
@@ -81,8 +81,8 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
             Parent root = (Parent) loader.load();
             StoreOrderController storeOrderController = loader.getController();
-
             storeOrderController.setUpStoreOrder(storeOrders);
+
             storeOrderController.setOrderPrice();
             storeOrderController.displayOrdersList();
 
